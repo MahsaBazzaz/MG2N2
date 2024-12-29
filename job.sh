@@ -6,8 +6,8 @@
 #SBATCH --mem=10GB
 #SBATCH --ntasks=1
 #SBATCH --job-name=MG2N2
-#SBATCH --output=./log/MG2N2/output_%j.txt
-#SBATCH --error=./log/MG2N2/error_%j.txt
+#SBATCH --output=./log/output_%j.txt
+#SBATCH --error=./log/error_%j.txt
 
 source ../../../scratch/bazzaz.ma/oldenv
 module load python/2.7.15 cuda/9.0
