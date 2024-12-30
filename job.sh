@@ -17,17 +17,16 @@ VENV_PATH=../../../scratch/bazzaz.ma/oldenv
 # Check if the virtual environment exists
 if [ ! -d "$VENV_PATH" ]; then
     echo "Creating virtual environment..."
-    virtualenv --python=python3 ../../../scratch/bazzaz.ma/oldenv
+    virtualenv ../../../scratch/bazzaz.ma/oldenv
 fi
 
 echo "Activating virtual environment..."
 source $VENV_PATH/bin/activate
-python -m ensurepip --upgrade
-python -m pip install --upgrade pip
+pip install --upgrade pip
 pip install -r requirements.txt
 echo "Finished Setting Up virtual environment..."
 echo "running python translate_dataset.py"
-python translate_dataset.py
+python3 translate_dataset.py
 echo "running python train_generator.py"
-python train_generator.py 0 full
+python3 train_generator.py 0 full
 deactivate
