@@ -9,31 +9,23 @@
 #SBATCH --output=./log/output_%j.txt
 #SBATCH --error=./log/error_%j.txt
 
-source ../../../scratch/bazzaz.ma/oldenv
-module load python/2.7.15 cuda/9.0
+module load python/3.4.10 cuda/9.0
 pip install virtualenv
-virtualenv ../../../scratch/bazzaz.ma/oldenv
-source ../../../scratch/bazzaz.ma/oldenv/bin/activate
-pip install -r requirements.txt
 # Path to your virtual environment
 VENV_PATH=../../../scratch/bazzaz.ma/oldenv
 
 # Check if the virtual environment exists
-if [ -d "$VENV_PATH" ]; then
-    echo "Activating existing virtual environment..."
-    # Activate the virtual environment
-    source $VENV_PATH/bin/activate
-else
+if [ ! -d "$VENV_PATH" ]; then
     echo "Creating virtual environment..."
-    module load python/2.7.15
-    pip install virtualenv
-    virtualenv $VENV_PATH
-    # Activate the virtual environment
-    source $VENV_PATH/bin/activate
-    # Install required packages
-    pip install -r requirements.txt
+    virtualenv ../../../scratch/bazzaz.ma/oldenv
 fi
 
+echo "Activating virtual environment..."
+source $VENV_PATH/bin/activate
+pip install -r requirements.txt
+echo "Finished Setting Up virtual environment..."
+echo "running python translate_dataset.py"
 python translate_dataset.py
+echo "running python train_generator.py"
 python train_generator.py 0 full
 deactivate
