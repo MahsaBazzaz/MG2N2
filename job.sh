@@ -9,7 +9,7 @@
 #SBATCH --output=./log/output_%j.txt
 #SBATCH --error=./log/error_%j.txt
 
-module load python/3.6.12 cuda/9.0
+module load python/3.7.0 cuda/9.0
 pip install virtualenv
 # Path to your virtual environment
 VENV_PATH=../../../scratch/bazzaz.ma/oldenv
@@ -22,6 +22,8 @@ fi
 
 echo "Activating virtual environment..."
 source $VENV_PATH/bin/activate
+python -m ensurepip --upgrade
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 echo "Finished Setting Up virtual environment..."
 echo "running python translate_dataset.py"
