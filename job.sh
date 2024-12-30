@@ -9,7 +9,7 @@
 #SBATCH --output=./log/output_%j.txt
 #SBATCH --error=./log/error_%j.txt
 
-module load python/3.4.10 cuda/9.0
+module load python/3.6.12 cuda/9.0
 pip install virtualenv
 # Path to your virtual environment
 VENV_PATH=../../../scratch/bazzaz.ma/oldenv
@@ -17,7 +17,7 @@ VENV_PATH=../../../scratch/bazzaz.ma/oldenv
 # Check if the virtual environment exists
 if [ ! -d "$VENV_PATH" ]; then
     echo "Creating virtual environment..."
-    virtualenv ../../../scratch/bazzaz.ma/oldenv
+    virtualenv --python=python3 ../../../scratch/bazzaz.ma/oldenv
 fi
 
 echo "Activating virtual environment..."
