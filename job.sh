@@ -25,8 +25,6 @@ source $VENV_PATH/bin/activate
 pip install --upgrade pip
 pip install -r requirements.txt
 echo "Finished Setting Up virtual environment..."
-echo "running python translate_dataset.py"
-python3 translate_dataset.py
 echo "running python train_generator.py"
 python3 train_generator.py 0 full
 deactivate
